@@ -1,0 +1,14 @@
+.grid-row {
+    display: flex;
+}
+.grid-cell {
+    flex: 1;
+    /* background-color: yellow; */
+    aspect-ratio: 1;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.grid {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
