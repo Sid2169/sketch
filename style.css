@@ -3,9 +3,6 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
@@ -22,12 +19,83 @@ body {
 #grid {
     /* border-top: 1px solid black;
     border-left: 1px solid black; */
-    width: 40%;
+    width: 95%;
+    max-width: 620px;
     margin: auto;
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     /* border: 1px dashed black; */
-    background-color: white;
-    
+    background-color: white;   
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: skyblue; 
+    border-radius: 10px;
+    margin: 12px;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.3);
+    position: sticky;
+}
+.tools {
+    position: relative;
+    width: 50px;
+    aspect-ratio: 1;
+    margin: 4px;
+    background-size: cover;
+    border-radius: 4px;
+}
+#grid-tool {
+    background-image: url(images/grid-tool.png);
+}
+#color-picker {
+    background-image: url(images/color-picker.png);
+}
+#rainbow-mode {
+    background-image: url(images/rainbow-mode.png);
+}
+.tools:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.3);
+}
+.tools::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute; /* Positioned relative to .tools */
+    z-index: 1;
+    bottom: 125%; /* Position above the .tools element */
+    left: 50%;
+    margin-left: -60px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tools::before {
+    content: "";
+    visibility: hidden;
+    position: absolute; /* Positioned relative to .tools */
+    bottom: 100%; /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tools:hover::after,
+.tools:hover::before {
+    visibility: visible;
+    opacity: 1;
 }
 
