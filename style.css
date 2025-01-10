@@ -1,8 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+    background: linear-gradient(to right, #00b09b, #96c93d);    padding: 0;
     height: 100vh;
 }
 
@@ -25,20 +23,30 @@ body {
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     /* border: 1px dashed black; */
-    background-color: white;   
+    background-color: white;
+    padding: 4px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: skyblue; 
-    border-radius: 10px;
-    margin: 12px;
+    padding: 20px;
+    background-color: #cdf4cd;    
+    margin: 20px;
+    border-radius: 12px;
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.3);
     position: sticky;
 }
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    color: transparent;
+    
+}
+
 .tools {
     position: relative;
     width: 50px;
