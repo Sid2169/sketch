@@ -17,7 +17,18 @@ document.addEventListener('click', (event) => {
     }
 });
 //Add event listerner of the each grid-size options in grid tool menu
-
+document.querySelectorAll('.grid-sizes').forEach((gridSize) => {
+    gridSize.addEventListener('click', () => {
+        //Before creating a new grid, ask the user if they want to clear the current grid
+        if (document.getElementById('grid')) {
+            if (!confirm('Creating a new grid will clear the current grid. Do you want to continue?')) {
+                return;
+            }
+        }
+        gridDimension = parseInt(gridSize.id.slice(-3));
+        createNewGrid(gridDimension);
+    });
+});
 
 
 
