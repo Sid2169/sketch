@@ -107,3 +107,32 @@ header h1 {
     opacity: 1;
 }
 
+/* grid tool styles  */
+.sub-menu {
+    position: absolute;
+    background-color: #cdf4cd; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.sub-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sub-menu button:hover {
+    background-color: #f1f1f1;
+}
+
+/* hidden class for hiding elements */
+.hidden {
+    display: none;
+}
+

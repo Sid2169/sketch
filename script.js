@@ -1,6 +1,25 @@
 let gridDimension = 16;
 createNewGrid(gridDimension);
 
+//Event listerner for grid-tool for showing and hindig the grid-tool-menu
+document.getElementById('grid-tool').addEventListener('click', () => {
+    if(document.getElementById('grid-tool-menu').classList.contains('hidden')) {
+        document.getElementById('grid-tool-menu').classList.remove('hidden');
+    }
+    else {
+        document.getElementById('grid-tool-menu').classList.add('hidden');
+    }
+});
+//hide the grid-tool-menu when the user clicks outside the grid-tool-menu
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('#grid-tool')) {
+        document.getElementById('grid-tool-menu').classList.add('hidden');
+    }
+});
+//Add event listerner of the each grid-size options in grid tool menu
+
+
+
 
 //Function to create a new grid
 function createNewGrid(size) {
