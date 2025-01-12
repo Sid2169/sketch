@@ -83,6 +83,9 @@ header h1 {
 #clear-canvas {
     background-image: url(images/clear-canvas.png);
 }
+#save-button {
+    background-image: url(images/save-button.png);
+}
 .tools:hover {
     cursor: pointer;
     transform: scale(1.05);

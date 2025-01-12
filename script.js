@@ -132,6 +132,11 @@ document.getElementById('clear-canvas').addEventListener('click', () => {
     createNewGrid(gridDimension);
 });
 
+//Add event listener to download-image button
+document.getElementById('save-button').addEventListener('click', () => {
+    downloadImage();
+});
+
 
 
 //Function to create a new grid
@@ -247,3 +252,15 @@ function createNewGrid(size) {
     }
     document.querySelector('body').appendChild(grid);
 }
+
+//Function to download a #grid as an image
+function downloadImage() {
+    const grid = document.getElementById('grid');
+    html2canvas(grid).then((canvas) => {
+        const image = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'pixel-art.png';
+        link.click();
+    });
+} 

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header >
+    <header>
         <h1>ETCH-A-SKETCH</h1>
         <div class="tool-container">
             <button class="tools" id="grid-tool" data-tooltip="Grid-Size"></button>
@@ -20,18 +22,24 @@
                 <button class="grid-sizes" id="grid-096">96x96</button>
                 <button class="grid-sizes" id="grid-128">128x128</button>
             </div>
-            
+
             <button class="tools" id="color-picker" data-tooltip="Color Picker"><input type="color"></button>
-            
+
             <button class="tools" id="rainbow-mode" data-tooltip="Rainbow-mode"></button>
-            
+
             <button class="tools" id="shading-tool" data-tooltip="Shading-tool"></button>
 
             <button class="tools" id="eraser-tool" data-tooltip="Eraser"></button>
 
             <button class="tools" id="clear-canvas" data-tooltip="Clear Canvas"></button>
+
+            <!-- save butto -->
+            <button class="tools" id="save-button" data-tooltip="Save"></button>
         </div>
     </header>
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
