@@ -62,6 +62,15 @@ header h1 {
 #color-picker {
     background-image: url(images/color-picker.png)
 }
+#color-picker input[type="color"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
 #rainbow-mode {
     background-image: url(images/rainbow-mode.png);
 }

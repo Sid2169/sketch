@@ -2,6 +2,10 @@ let colorMode = true;
 let rainbowMode = false;
 let shadingMode = false;
 let penColor = 'black';
+//Add 8px border of penColor to the color-picker button
+document.getElementById('color-picker').style.border = `8px solid ${penColor}`;
+//Add highlight to color-picker button
+document.getElementById('color-picker').classList.add('highlight');
 let gridDimension = 16;
 createNewGrid(gridDimension);
 
@@ -61,6 +65,20 @@ document.getElementById('shading-tool').addEventListener('click', () => {
             }
         });
     }
+});
+
+//Add event listener to input inside color-picker button
+document.querySelector('#color-picker input').addEventListener('input', (event) => {
+    penColor = event.target.value;
+    colorMode = true;
+    //add highlight to color-picker button
+    document.getElementById('color-picker').classList.add('highlight');
+    //Add a 8px border of penColor to the color-picker button
+    document.getElementById('color-picker').style.border = `8px solid ${penColor}`;
+    
+    rainbowMode = false;
+    //remove highlight from rainbow-tool button
+    document.getElementById('rainbow-tool').classList.remove('highlight');
 });
 
 
