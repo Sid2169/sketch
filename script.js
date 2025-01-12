@@ -122,6 +122,16 @@ document.getElementById('eraser-tool').addEventListener('click', () => {
         document.getElementById('shading-tool').classList.remove('highlight');
 });
 
+//Add event listener to clear-canvas button
+document.getElementById('clear-canvas').addEventListener('click', () => {
+    if (document.getElementById('grid')) {
+        if (!confirm('Are you sure you want to clear the canvas?')) {
+            return;
+        }
+    }
+    createNewGrid(gridDimension);
+});
+
 
 
 //Function to create a new grid

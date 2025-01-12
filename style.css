@@ -50,7 +50,7 @@ header h1 {
 
 .tools {
     position: relative;
-    width: 50px;
+    width: 40px;
     aspect-ratio: 1;
     margin: 4px;
     background-size: cover;
@@ -79,6 +79,9 @@ header h1 {
 }
 #eraser-tool {
     background-image: url(images/eraser-tool.png);
+}
+#clear-canvas {
+    background-image: url(images/clear-canvas.png);
 }
 .tools:hover {
     cursor: pointer;
