@@ -75,12 +75,33 @@ document.querySelector('#color-picker input').addEventListener('input', (event) 
     document.getElementById('color-picker').classList.add('highlight');
     //Add a 8px border of penColor to the color-picker button
     document.getElementById('color-picker').style.border = `8px solid ${penColor}`;
-    
+
     rainbowMode = false;
     //remove highlight from rainbow-tool button
-    document.getElementById('rainbow-tool').classList.remove('highlight');
+    document.getElementById('rainbow-mode').classList.remove('highlight');
 });
 
+//Add event listener to rainbow-mode button
+document.getElementById('rainbow-mode').addEventListener('click', () => {
+    if (rainbowMode) {
+        rainbowMode = false;
+        colorMode = true;
+        //remove highlight from rainbow-tool button
+        document.getElementById('rainbow-mode').classList.remove('highlight');
+        //Add a 8px border of penColor to the color-picker button
+        document.getElementById('color-picker').style.border = `8px solid ${penColor}`;
+    }
+    else {
+        rainbowMode = true;
+        //highlight rainbow-tool button
+        document.getElementById('rainbow-mode').classList.add('highlight');
+        colorMode = false;
+        //remove highlight from color-picker button
+        document.getElementById('color-picker').classList.remove('highlight');
+        //remove 8px border of penColor from the color-picker button
+        document.getElementById('color-picker').style.border = 'none';
+    }
+});
 
 
 
@@ -91,7 +112,7 @@ function createNewGrid(size) {
     if (oldGrid) {
         document.querySelector('body').removeChild(oldGrid);
     }
-    
+
     //Turn of shadingMode and remove highlight from shading-tool button
     shadingMode = false;
     document.getElementById('shading-tool').classList.remove('highlight');
@@ -129,6 +150,22 @@ function createNewGrid(size) {
                     gridCell.style.opacity = gridCell.style.opacity || 0;
                     gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
                 }
+                //Behaviour when rainbowMode is on and shadingMode is off
+                if (rainbowMode && !shadingMode) {
+                    const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    gridCell.style.backgroundColor = randomColor;
+                    gridCell.classList.add('colored');
+                    gridCell.style.opacity = 1;
+                }
+                //Behaviour when rainbowMode and shadingMode is on
+                if (rainbowMode && shadingMode) {
+                    const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    gridCell.style.backgroundColor = randomColor;
+                    gridCell.classList.add('colored');
+                    gridCell.style.opacity = gridCell.style.opacity || 0;
+                    gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
+                }
+
             });
             //Pen behaviour on mouseover on grid cell
             gridCell.addEventListener('mouseover', () => {
@@ -142,6 +179,21 @@ function createNewGrid(size) {
                     //Behaviour when colorMode and shadingMode is on
                     if (shadingMode && shadingMode) {
                         gridCell.style.backgroundColor = penColor;
+                        gridCell.classList.add('colored');
+                        gridCell.style.opacity = gridCell.style.opacity || 0;
+                        gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
+                    }
+                    //Behaviour when rainbowMode is on and shadingMode is off
+                    if (rainbowMode && !shadingMode) {
+                        const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                        gridCell.style.backgroundColor = randomColor;
+                        gridCell.classList.add('colored');
+                        gridCell.style.opacity = 1;
+                    }
+                    //Behaviour when rainbowMode and shadingMode is on
+                    if (rainbowMode && shadingMode) {
+                        const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                        gridCell.style.backgroundColor = randomColor;
                         gridCell.classList.add('colored');
                         gridCell.style.opacity = gridCell.style.opacity || 0;
                         gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
