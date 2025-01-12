@@ -2,6 +2,7 @@ let colorMode = true;
 let rainbowMode = false;
 let shadingMode = false;
 let penColor = 'black';
+let eraseMode = false;
 //Add 8px border of penColor to the color-picker button
 document.getElementById('color-picker').style.border = `8px solid ${penColor}`;
 //Add highlight to color-picker button
@@ -64,6 +65,9 @@ document.getElementById('shading-tool').addEventListener('click', () => {
                 cell.style.opacity = 0;
             }
         });
+        eraseMode = false;
+        //remove highlight from eraser-tool button
+        document.getElementById('eraser-tool').classList.remove('highlight');
     }
 });
 
@@ -79,19 +83,13 @@ document.querySelector('#color-picker input').addEventListener('input', (event) 
     rainbowMode = false;
     //remove highlight from rainbow-tool button
     document.getElementById('rainbow-mode').classList.remove('highlight');
+
+    eraseMode = false;
+    document.getElementById('eraser-tool').classList.remove('highlight');
 });
 
 //Add event listener to rainbow-mode button
 document.getElementById('rainbow-mode').addEventListener('click', () => {
-    if (rainbowMode) {
-        rainbowMode = false;
-        colorMode = true;
-        //remove highlight from rainbow-tool button
-        document.getElementById('rainbow-mode').classList.remove('highlight');
-        //Add a 8px border of penColor to the color-picker button
-        document.getElementById('color-picker').style.border = `8px solid ${penColor}`;
-    }
-    else {
         rainbowMode = true;
         //highlight rainbow-tool button
         document.getElementById('rainbow-mode').classList.add('highlight');
@@ -100,7 +98,28 @@ document.getElementById('rainbow-mode').addEventListener('click', () => {
         document.getElementById('color-picker').classList.remove('highlight');
         //remove 8px border of penColor from the color-picker button
         document.getElementById('color-picker').style.border = 'none';
-    }
+
+        eraseMode = false;
+        //remove highlight from eraser-tool button
+        document.getElementById('eraser-tool').classList.remove('highlight');
+});
+
+//Add event listener to eraser-tool button
+document.getElementById('eraser-tool').addEventListener('click', () => {
+        eraseMode = true;
+        //highlight eraser-tool button
+        document.getElementById('eraser-tool').classList.add('highlight');
+        colorMode = false;
+        //remove highlight from color-picker button
+        document.getElementById('color-picker').classList.remove('highlight');
+        //remove 8px border of penColor from the color-picker button
+        document.getElementById('color-picker').style.border = 'none';
+        rainbowMode = false;
+        //remove highlight from rainbow-tool button
+        document.getElementById('rainbow-mode').classList.remove('highlight');
+        //Turn shadingMode off and remove highlight from shading-tool button
+        shadingMode = false;
+        document.getElementById('shading-tool').classList.remove('highlight');
 });
 
 
@@ -165,6 +184,12 @@ function createNewGrid(size) {
                     gridCell.style.opacity = gridCell.style.opacity || 0;
                     gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
                 }
+                //Behaviour when eraseMode is on
+                if (eraseMode) {
+                    gridCell.style.backgroundColor = 'white';
+                    gridCell.classList.remove('colored');
+                    gridCell.style.opacity = 1;
+                }
 
             });
             //Pen behaviour on mouseover on grid cell
@@ -197,6 +222,12 @@ function createNewGrid(size) {
                         gridCell.classList.add('colored');
                         gridCell.style.opacity = gridCell.style.opacity || 0;
                         gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
+                    }
+                    //Behaviour when eraseMode is on
+                    if (eraseMode) {
+                        gridCell.style.backgroundColor = 'white';
+                        gridCell.classList.remove('colored');
+                        gridCell.style.opacity = 1;
                     }
                 }
             });
