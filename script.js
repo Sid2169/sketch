@@ -1,9 +1,14 @@
+let colorMode = true;
+let rainbowMode = false;
+let shadingMode = false;
+let penColor = 'black';
 let gridDimension = 16;
 createNewGrid(gridDimension);
 
+
 //Event listerner for grid-tool for showing and hindig the grid-tool-menu
 document.getElementById('grid-tool').addEventListener('click', () => {
-    if(document.getElementById('grid-tool-menu').classList.contains('hidden')) {
+    if (document.getElementById('grid-tool-menu').classList.contains('hidden')) {
         document.getElementById('grid-tool-menu').classList.remove('hidden');
     }
     else {
@@ -30,16 +35,49 @@ document.querySelectorAll('.grid-sizes').forEach((gridSize) => {
     });
 });
 
+//Add event listerner to shading-tool button
+document.getElementById('shading-tool').addEventListener('click', () => {
+    if (shadingMode) {
+        shadingMode = false;
+        //remove highlight from shading-tool button
+        document.getElementById('shading-tool').classList.remove('highlight');
+        //Set opacity of untouched grid cells to 1
+        const gridCells = document.querySelectorAll('.grid-cell');
+        gridCells.forEach((cell) => {
+            if (!cell.classList.contains('colored')) {
+                cell.style.opacity = 1;
+            }
+        });
+    }
+    else {
+        shadingMode = true;
+        //highlight shading-tool button
+        document.getElementById('shading-tool').classList.add('highlight');
+        //Set opacity of untouched grid cells to 0
+        const gridCells = document.querySelectorAll('.grid-cell');
+        gridCells.forEach((cell) => {
+            if (!cell.classList.contains('colored')) {
+                cell.style.opacity = 0;
+            }
+        });
+    }
+});
+
+
 
 
 //Function to create a new grid
 function createNewGrid(size) {
-     // Remove the old grid if it exists
-     const oldGrid = document.getElementById('grid');
-     if (oldGrid) {
-         document.querySelector('body').removeChild(oldGrid);
-     }
+    // Remove the old grid if it exists
+    const oldGrid = document.getElementById('grid');
+    if (oldGrid) {
+        document.querySelector('body').removeChild(oldGrid);
+    }
     
+    //Turn of shadingMode and remove highlight from shading-tool button
+    shadingMode = false;
+    document.getElementById('shading-tool').classList.remove('highlight');
+
     // Create a new grid
     const grid = document.createElement('div');
     grid.id = 'grid';
@@ -56,13 +94,41 @@ function createNewGrid(size) {
         for (let j = 0; j < size; j++) {
             const gridCell = document.createElement('div');
             gridCell.classList.add('grid-cell');
-            gridCell.addEventListener('mouseover', () => {
-                if (isDrawing) {
-                    gridCell.style.backgroundColor = 'black';
+            gridCell.style.opacity = 1; // Initialize opacity during grid creation
+
+            //Pen behaviour on mousedown on grid cell
+            gridCell.addEventListener('mousedown', () => {
+                //Behaviour when colorMode is on and shadingMode is off
+                if (colorMode && !shadingMode) {
+                    gridCell.style.backgroundColor = penColor;
+                    gridCell.classList.add('colored');
+                    gridCell.style.opacity = 1;
+                }
+                //Behaviour when colorMode and shadingMode is on
+                if (colorMode && shadingMode) {
+                    gridCell.style.backgroundColor = penColor;
+                    gridCell.classList.add('colored');
+                    gridCell.style.opacity = gridCell.style.opacity || 0;
+                    gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
                 }
             });
-            gridCell.addEventListener('mousedown', () => {
-                gridCell.style.backgroundColor = 'black';
+            //Pen behaviour on mouseover on grid cell
+            gridCell.addEventListener('mouseover', () => {
+                if (isDrawing) {
+                    //Behaviour when colorMode is on and shadingMode is off
+                    if (colorMode && !shadingMode) {
+                        gridCell.style.backgroundColor = penColor;
+                        gridCell.classList.add('colored');
+                        gridCell.style.opacity = 1;
+                    }
+                    //Behaviour when colorMode and shadingMode is on
+                    if (shadingMode && shadingMode) {
+                        gridCell.style.backgroundColor = penColor;
+                        gridCell.classList.add('colored');
+                        gridCell.style.opacity = gridCell.style.opacity || 0;
+                        gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
+                    }
+                }
             });
             gridRow.appendChild(gridCell);
         }

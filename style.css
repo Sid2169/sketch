@@ -13,6 +13,7 @@ body {
     aspect-ratio: 1;
     /* border-right: 1px solid black;
     border-bottom: 1px solid black; */
+    opacity: 1;
 }
 #grid {
     /* border-top: 1px solid black;
@@ -32,11 +33,11 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #cdf4cd;    
     margin: 20px;
     border-radius: 12px;
     box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.3);
     position: sticky;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 header h1 {
     margin: 0;
@@ -59,10 +60,13 @@ header h1 {
     background-image: url(images/grid-tool.png);
 }
 #color-picker {
-    background-image: url(images/color-picker.png);
+    background-image: url(images/color-picker.png)
 }
 #rainbow-mode {
     background-image: url(images/rainbow-mode.png);
+}
+#shading-tool {
+    background-image: url(images/shading-tool.png);
 }
 .tools:hover {
     cursor: pointer;
@@ -110,7 +114,7 @@ header h1 {
 /* grid tool styles  */
 .sub-menu {
     position: absolute;
-    background-color: #cdf4cd; 
+    background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 4px;
@@ -125,10 +129,18 @@ header h1 {
     background: none;
     text-align: left;
     cursor: pointer;
+    color: white;
 }
 
 .sub-menu button:hover {
     background-color: #f1f1f1;
+    color: black;
+}
+/* highlight for active buttons */
+.highlight {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.3);
+    border: 4px solid aqua;
 }
 
 /* hidden class for hiding elements */
