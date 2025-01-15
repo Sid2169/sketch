@@ -544,3 +544,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 ## Additional Notes
 
 - **grid customization** — Use the existing project patterns when extending this area.
+- **grid toggle** — Document any manual steps that cannot be automated.
