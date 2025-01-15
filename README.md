@@ -540,3 +540,7 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 [Live Demo](#) • [Report Bug](#) • [Request Feature](#)
 
 </div>
+
+## Additional Notes
+
+- **grid customization** — Use the existing project patterns when extending this area.
