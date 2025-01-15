@@ -545,3 +545,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 
 - **grid customization** — Use the existing project patterns when extending this area.
 - **grid toggle** — Document any manual steps that cannot be automated.
+- **touch input** — Keep the terminology consistent with the rest of the project.
