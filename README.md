@@ -550,3 +550,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **download flow** — Keep the related setup steps aligned with the current scripts.
 - **pixel rendering** — Prefer small, focused changes over broad rewrites.
 - **responsive layout** — Check the relevant browser or runtime support.
+- **grid toggle** — Keep the related setup steps aligned with the current scripts.
