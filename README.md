@@ -548,3 +548,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **touch input** — Keep the terminology consistent with the rest of the project.
 - **control panel** — Keep commands copy-pasteable for new contributors.
 - **download flow** — Keep the related setup steps aligned with the current scripts.
+- **pixel rendering** — Prefer small, focused changes over broad rewrites.
