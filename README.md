@@ -552,3 +552,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **responsive layout** — Check the relevant browser or runtime support.
 - **grid toggle** — Keep the related setup steps aligned with the current scripts.
 - **control panel** — Check the required environment values before deploying.
+- **color modes** — Check that exported images match the current grid size.
