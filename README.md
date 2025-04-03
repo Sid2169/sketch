@@ -554,3 +554,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **control panel** — Check the required environment values before deploying.
 - **color modes** — Check that exported images match the current grid size.
 - **download flow** — Keep commands copy-pasteable for new contributors.
+- **mouse input** — Check that exported images match the current grid size.
