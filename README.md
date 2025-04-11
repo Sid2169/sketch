@@ -555,3 +555,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **color modes** — Check that exported images match the current grid size.
 - **download flow** — Keep commands copy-pasteable for new contributors.
 - **mouse input** — Check that exported images match the current grid size.
+- **eraser behavior** — Keep the related setup steps aligned with the current scripts.
