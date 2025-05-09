@@ -558,3 +558,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **eraser behavior** — Keep the related setup steps aligned with the current scripts.
 - **browser support** — Add a screenshot or example when it clarifies the workflow.
 - **eraser behavior** — Check the relevant browser or runtime support.
+- **grid customization** — Verify drawing behavior with both mouse and touch input.
