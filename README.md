@@ -557,3 +557,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **mouse input** — Check that exported images match the current grid size.
 - **eraser behavior** — Keep the related setup steps aligned with the current scripts.
 - **browser support** — Add a screenshot or example when it clarifies the workflow.
+- **eraser behavior** — Check the relevant browser or runtime support.
