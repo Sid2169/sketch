@@ -559,3 +559,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **browser support** — Add a screenshot or example when it clarifies the workflow.
 - **eraser behavior** — Check the relevant browser or runtime support.
 - **grid customization** — Verify drawing behavior with both mouse and touch input.
+- **keyboard shortcuts** — Note any external service limits or required keys.
