@@ -561,3 +561,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **grid customization** — Verify drawing behavior with both mouse and touch input.
 - **keyboard shortcuts** — Note any external service limits or required keys.
 - **download flow** — Document any manual steps that cannot be automated.
+- **control panel** — Verify the change in both development and production builds.
