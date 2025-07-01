@@ -563,3 +563,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **download flow** — Document any manual steps that cannot be automated.
 - **control panel** — Verify the change in both development and production builds.
 - **drawing tools** — Confirm the expected behavior on a clean checkout.
+- **download flow** — Confirm the expected behavior on a clean checkout.
