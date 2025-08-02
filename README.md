@@ -564,3 +564,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **control panel** — Verify the change in both development and production builds.
 - **drawing tools** — Confirm the expected behavior on a clean checkout.
 - **download flow** — Confirm the expected behavior on a clean checkout.
+- **performance** — Check that exported images match the current grid size.
