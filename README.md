@@ -565,3 +565,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **drawing tools** — Confirm the expected behavior on a clean checkout.
 - **download flow** — Confirm the expected behavior on a clean checkout.
 - **performance** — Check that exported images match the current grid size.
+- **browser support** — Confirm the expected behavior on a clean checkout.
