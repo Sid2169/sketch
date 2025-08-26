@@ -568,3 +568,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **browser support** — Confirm the expected behavior on a clean checkout.
 - **mouse input** — Keep commands copy-pasteable for new contributors.
 - **performance** — Verify the change in both development and production builds.
+- **touch input** — Document any manual steps that cannot be automated.
