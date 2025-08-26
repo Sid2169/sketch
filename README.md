@@ -567,3 +567,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **performance** — Check that exported images match the current grid size.
 - **browser support** — Confirm the expected behavior on a clean checkout.
 - **mouse input** — Keep commands copy-pasteable for new contributors.
+- **performance** — Verify the change in both development and production builds.
