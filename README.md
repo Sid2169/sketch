@@ -573,3 +573,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **accessibility** — Note any external service limits or required keys.
 - **image export** — Verify drawing behavior with both mouse and touch input.
 - **image export** — Prefer small, focused changes over broad rewrites.
+- **visual design** — Check the relevant browser or runtime support.
