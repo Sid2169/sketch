@@ -571,3 +571,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **touch input** — Document any manual steps that cannot be automated.
 - **browser support** — Keep commands copy-pasteable for new contributors.
 - **accessibility** — Note any external service limits or required keys.
+- **image export** — Verify drawing behavior with both mouse and touch input.
