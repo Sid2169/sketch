@@ -574,3 +574,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **image export** — Verify drawing behavior with both mouse and touch input.
 - **image export** — Prefer small, focused changes over broad rewrites.
 - **visual design** — Check the relevant browser or runtime support.
+- **eraser behavior** — Update the documentation if the visible behavior changes.
