@@ -576,3 +576,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **visual design** — Check the relevant browser or runtime support.
 - **eraser behavior** — Update the documentation if the visible behavior changes.
 - **mouse input** — Keep the related setup steps aligned with the current scripts.
+- **drawing tools** — Use the existing project patterns when extending this area.
