@@ -577,3 +577,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **eraser behavior** — Update the documentation if the visible behavior changes.
 - **mouse input** — Keep the related setup steps aligned with the current scripts.
 - **drawing tools** — Use the existing project patterns when extending this area.
+- **download flow** — Add a screenshot or example when it clarifies the workflow.
