@@ -578,3 +578,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **mouse input** — Keep the related setup steps aligned with the current scripts.
 - **drawing tools** — Use the existing project patterns when extending this area.
 - **download flow** — Add a screenshot or example when it clarifies the workflow.
+- **performance** — Verify that links and references still resolve.
