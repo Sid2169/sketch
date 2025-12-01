@@ -579,3 +579,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **drawing tools** — Use the existing project patterns when extending this area.
 - **download flow** — Add a screenshot or example when it clarifies the workflow.
 - **performance** — Verify that links and references still resolve.
+- **download flow** — Use the existing project patterns when extending this area.
