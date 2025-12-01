@@ -580,3 +580,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **download flow** — Add a screenshot or example when it clarifies the workflow.
 - **performance** — Verify that links and references still resolve.
 - **download flow** — Use the existing project patterns when extending this area.
+- **grid customization** — Keep the terminology consistent with the rest of the project.
