@@ -1,45 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-a-Sketch</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <title>Etch-a-Sketch | Modern Pixel Art Studio</title>
+    <style>
 
+
+        @import url('https://fonts.googleapis.com/css2?family=Sekuya&display=swap');
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Sekuya",'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        /* Toolbar */
+        .tool-container {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .tools {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tools:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .tools:active {
+            transform: translateY(0);
+        }
+
+        .tools.highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        /* Tool Icons (Using Emojis for simplicity) */
+        #grid-tool::before { content: '⊞'; }
+        #color-picker::before { content: '🎨'; }
+        #rainbow-mode::before { content: '🌈'; }
+        #shading-tool::before { content: '◐'; }
+        #eraser-tool::before { content: '🧹'; }
+        #clear-canvas::before { content: '🗑️'; }
+        #save-button::before { content: '💾'; }
+
+        #color-picker input[type="color"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Tooltips */
+        .tools::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .tools:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* Grid Size Menu */
+        .sub-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            z-index: 100;
+            min-width: 140px;
+        }
+
+        .sub-menu.hidden {
+            display: none;
+        }
+
+        .grid-sizes {
+            padding: 10px 16px;
+            border: none;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+            transition: all 0.2s;
+        }
+
+        .grid-sizes:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        /* Grid Container */
+        #grid {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            width: 95%;
+            max-width: 680px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-row {
+            display: flex;
+            flex: 1;
+        }
+
+        .grid-cell {
+            flex: 1;
+            background-color: white;
+            opacity: 1;
+            transition: background-color 0.1s ease;
+            border: 0.5px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .grid-cell:hover {
+            box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Color Indicator */
+        #color-picker.highlight::before {
+            color: transparent;
+            background: var(--current-color, #000);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .tools {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            #grid {
+                max-width: 95%;
+                padding: 8px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #grid {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
 <body>
     <header>
-        <h1>ETCH-A-SKETCH</h1>
+        <h1>Etch-a-Sketch Studio</h1>
         <div class="tool-container">
-            <button class="tools" id="grid-tool" data-tooltip="Grid-Size"></button>
+            <button class="tools" id="grid-tool" data-tooltip="Grid Size"></button>
             <div class="sub-menu hidden" id="grid-tool-menu">
-                <button class="grid-sizes" id="grid-016">16x16</button>
-                <button class="grid-sizes" id="grid-020">20x20</button>
-                <button class="grid-sizes" id="grid-032">32x32</button>
-                <button class="grid-sizes" id="grid-043">48x48</button>
-                <button class="grid-sizes" id="grid-064">64x64</button>
-                <button class="grid-sizes" id="grid-096">96x96</button>
-                <button class="grid-sizes" id="grid-128">128x128</button>
+                <button class="grid-sizes" id="grid-016">16×16</button>
+                <button class="grid-sizes" id="grid-020">20×20</button>
+                <button class="grid-sizes" id="grid-032">32×32</button>
+                <button class="grid-sizes" id="grid-048">48×48</button>
+                <button class="grid-sizes" id="grid-064">64×64</button>
+                <button class="grid-sizes" id="grid-096">96×96</button>
+                <button class="grid-sizes" id="grid-128">128×128</button>
             </div>
-
-            <button class="tools" id="color-picker" data-tooltip="Color Picker"><input type="color"></button>
-
-            <button class="tools" id="rainbow-mode" data-tooltip="Rainbow-mode"></button>
-
-            <button class="tools" id="shading-tool" data-tooltip="Shading-tool"></button>
-
+            <button class="tools highlight" id="color-picker" data-tooltip="Color Picker">
+                <input type="color">
+            </button>
+            <button class="tools" id="rainbow-mode" data-tooltip="Rainbow Mode"></button>
+            <button class="tools" id="shading-tool" data-tooltip="Shading Tool"></button>
             <button class="tools" id="eraser-tool" data-tooltip="Eraser"></button>
-
             <button class="tools" id="clear-canvas" data-tooltip="Clear Canvas"></button>
-
-            <!-- save butto -->
-            <button class="tools" id="save-button" data-tooltip="Save"></button>
+            <button class="tools" id="save-button" data-tooltip="Save Image"></button>
         </div>
     </header>
-    <!-- Include html2canvas library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="script.js"></script>
-</body>
 
+    <main>
+        <!-- Grid will be inserted here -->
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        let colorMode = true;
+        let rainbowMode = false;
+        let shadingMode = false;
+        let penColor = '#000000';
+        let eraseMode = false;
+        let gridDimension = 16;
+
+        // Update CSS variable for color picker
+        document.getElementById('color-picker').style.setProperty('--current-color', penColor);
+
+        createNewGrid(gridDimension);
+
+        // Grid tool menu toggle
+        document.getElementById('grid-tool').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('grid-tool-menu').classList.toggle('hidden');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('#grid-tool')) {
+                document.getElementById('grid-tool-menu').classList.add('hidden');
+            }
+        });
+
+        // Grid size selection
+        document.querySelectorAll('.grid-sizes').forEach((gridSize) => {
+            gridSize.addEventListener('click', () => {
+                if (document.getElementById('grid')) {
+                    if (!confirm('Creating a new grid will clear your current artwork. Continue?')) {
+                        return;
+                    }
+                }
+                gridDimension = parseInt(gridSize.id.replace('grid-', ''));
+                createNewGrid(gridDimension);
+                document.getElementById('grid-tool-menu').classList.add('hidden');
+            });
+        });
+
+        // Shading tool
+        document.getElementById('shading-tool').addEventListener('click', () => {
+            shadingMode = !shadingMode;
+            document.getElementById('shading-tool').classList.toggle('highlight', shadingMode);
+            
+            const gridCells = document.querySelectorAll('.grid-cell');
+            gridCells.forEach((cell) => {
+                if (!cell.classList.contains('colored')) {
+                    cell.style.opacity = shadingMode ? 0 : 1;
+                }
+            });
+
+            if (shadingMode) {
+                eraseMode = false;
+                document.getElementById('eraser-tool').classList.remove('highlight');
+            }
+        });
+
+        // Color picker
+        document.querySelector('#color-picker input').addEventListener('input', (event) => {
+            penColor = event.target.value;
+            colorMode = true;
+            
+            document.getElementById('color-picker').style.setProperty('--current-color', penColor);
+            document.getElementById('color-picker').classList.add('highlight');
+            
+            rainbowMode = false;
+            document.getElementById('rainbow-mode').classList.remove('highlight');
+            
+            eraseMode = false;
+            document.getElementById('eraser-tool').classList.remove('highlight');
+        });
+
+        // Rainbow mode
+        document.getElementById('rainbow-mode').addEventListener('click', () => {
+            rainbowMode = true;
+            document.getElementById('rainbow-mode').classList.add('highlight');
+            
+            colorMode = false;
+            document.getElementById('color-picker').classList.remove('highlight');
+            
+            eraseMode = false;
+            document.getElementById('eraser-tool').classList.remove('highlight');
+        });
+
+        // Eraser tool
+        document.getElementById('eraser-tool').addEventListener('click', () => {
+            eraseMode = true;
+            document.getElementById('eraser-tool').classList.add('highlight');
+            
+            colorMode = false;
+            document.getElementById('color-picker').classList.remove('highlight');
+            
+            rainbowMode = false;
+            document.getElementById('rainbow-mode').classList.remove('highlight');
+            
+            shadingMode = false;
+            document.getElementById('shading-tool').classList.remove('highlight');
+        });
+
+        // Clear canvas
+        document.getElementById('clear-canvas').addEventListener('click', () => {
+            if (document.getElementById('grid')) {
+                if (!confirm('Are you sure you want to clear the canvas?')) {
+                    return;
+                }
+            }
+            createNewGrid(gridDimension);
+        });
+
+        // Save image
+        document.getElementById('save-button').addEventListener('click', () => {
+            downloadImage();
+        });
+
+        // Create grid function
+        function createNewGrid(size) {
+            const oldGrid = document.getElementById('grid');
+            if (oldGrid) {
+                oldGrid.remove();
+            }
+
+            shadingMode = false;
+            document.getElementById('shading-tool').classList.remove('highlight');
+
+            const grid = document.createElement('div');
+            grid.id = 'grid';
+            let isDrawing = false;
+
+            document.body.addEventListener('mousedown', () => {
+                isDrawing = true;
+            });
+            document.body.addEventListener('mouseup', () => {
+                isDrawing = false;
+            });
+
+            for (let i = 0; i < size; i++) {
+                const gridRow = document.createElement('div');
+                gridRow.classList.add('grid-row');
+                
+                for (let j = 0; j < size; j++) {
+                    const gridCell = document.createElement('div');
+                    gridCell.classList.add('grid-cell');
+                    gridCell.style.opacity = 1;
+
+                    // Mouse down event
+                    gridCell.addEventListener('mousedown', () => {
+                        applyColor(gridCell);
+                    });
+
+                    // Mouse over event
+                    gridCell.addEventListener('mouseover', () => {
+                        if (isDrawing) {
+                            applyColor(gridCell);
+                        }
+                    });
+
+                    gridRow.appendChild(gridCell);
+                }
+                grid.appendChild(gridRow);
+            }
+            
+            document.querySelector('main').appendChild(grid);
+        }
+
+        // Apply color function
+        function applyColor(gridCell) {
+            if (colorMode && !shadingMode) {
+                gridCell.style.backgroundColor = penColor;
+                gridCell.classList.add('colored');
+                gridCell.style.opacity = 1;
+            }
+            else if (colorMode && shadingMode) {
+                gridCell.style.backgroundColor = penColor;
+                gridCell.classList.add('colored');
+                gridCell.style.opacity = gridCell.style.opacity || 0;
+                gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
+            }
+            else if (rainbowMode && !shadingMode) {
+                const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                gridCell.style.backgroundColor = randomColor;
+                gridCell.classList.add('colored');
+                gridCell.style.opacity = 1;
+            }
+            else if (rainbowMode && shadingMode) {
+                const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                gridCell.style.backgroundColor = randomColor;
+                gridCell.classList.add('colored');
+                gridCell.style.opacity = gridCell.style.opacity || 0;
+                gridCell.style.opacity = Math.min(1, parseFloat(gridCell.style.opacity) + 0.1);
+            }
+            else if (eraseMode) {
+                gridCell.style.backgroundColor = 'white';
+                gridCell.classList.remove('colored');
+                gridCell.style.opacity = 1;
+            }
+        }
+
+        // Download image function
+        function downloadImage() {
+            const grid = document.getElementById('grid');
+            html2canvas(grid).then((canvas) => {
+                const image = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'pixel-art.png';
+                link.click();
+            });
+        }
+    </script>
+</body>
 </html>
