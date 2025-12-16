@@ -6,7 +6,8 @@
 
 > A sleek, browser-based pixel art creator with multiple drawing modes, customizable grid sizes, and image export functionality. Built with vanilla JavaScript for a smooth, responsive drawing experience.
 
-![Home Page View](![Home Page of website](Screenshot from 2025-12-16 05-10-35.png))
+![Home Page View](screenshot-2025-12-16-05-10-35.png)
+
 
 [Live Demo](https://sid2169.github.io/sketch/) • [Report Bug](https://github.com/Sid2169/sketch/issues) • [Request Feature](https://github.com/Sid2169/sketch/issues)
 
