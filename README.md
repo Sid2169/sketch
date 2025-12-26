@@ -584,3 +584,4 @@ If you enjoyed creating pixel art with this tool, please consider giving it a �
 - **touch input** — Check the required environment values before deploying.
 - **keyboard shortcuts** — Add a screenshot or example when it clarifies the workflow.
 - **eraser behavior** — Add a screenshot or example when it clarifies the workflow.
+- **eraser behavior** — Document any manual steps that cannot be automated.
