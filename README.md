@@ -502,9 +502,9 @@ This project is licensed under the **MIT License** - see the LICENSE file for de
 
 ## 👤 Author
 
-**Your Name**
+Created by [Siddhartha](https://sidsingh.vercel.app/).
 
-- GitHub: [@yourusername](https://github.com/Sid2169)
+- GitHub: [@Sid2169](https://github.com/Sid2169)
 - Project Link: [Etch-a-Sketch Studio](https://github.com/Sid2169/sketch)
 
 ---

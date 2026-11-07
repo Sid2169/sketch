@@ -218,6 +218,36 @@
             background-clip: text;
         }
 
+        /* Creator Credit */
+        .site-footer {
+            padding: 0 0 8px;
+            text-align: center;
+        }
+
+        .creator-link {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: #51408a;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .creator-link:hover {
+            background: white;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .creator-link:focus-visible {
+            outline: 3px solid white;
+            outline-offset: 4px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
@@ -308,6 +338,10 @@
     <main>
         <!-- Grid will be inserted here -->
     </main>
+
+    <footer class="site-footer">
+        <a class="creator-link" href="https://sidsingh.vercel.app/" rel="author">Created by Siddhartha</a>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
